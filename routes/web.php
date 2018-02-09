@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('hell', function() {
+    return view('greeting');
+});    
+
+
+Route::get('test', 'TestController@index');
+
+Route::get('about', 'AboutController')->name('about');
+
+Route::get('hel', function() {
+    return view('home.greeting', ['name' => 'Janus']);
+});
+
+Route::get('bar', ['uses' => 'TestController@hello', 'as' => 'bar']);
+
+Route::get('bax', 'TestController@bax');
+Route::get('baz', 'TestController@baz');
