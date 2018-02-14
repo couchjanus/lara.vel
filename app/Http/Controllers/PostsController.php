@@ -17,7 +17,7 @@ class PostsController extends Controller
 
         $posts = DB::select('select * from posts');
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('blog.index', ['posts' => $posts]);
 
     }
 
@@ -54,7 +54,7 @@ class PostsController extends Controller
     {
         $post = DB::select("select * from posts where id = :id", ['id' => $id]);
 
-        return view('posts.show', ['post' => $post]);
+        return view('blog.show', ['post' => $post, 'hescomment' => true ]);
 
     }
 
