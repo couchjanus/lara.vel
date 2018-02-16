@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use DB;
+
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -12,15 +15,23 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-
-        $posts = DB::select('select * from posts');
-
+        // $posts = DB::table('posts')->get();
+        
+        // $posts = Post::all();
+        
+        $posts = \App\Post::all();
+        
+        // $posts = Post::paginate(10);
+        
+        // $posts = Post::simplePaginate(10);
+        
         return view('blog.index', ['posts' => $posts]);
-
     }
 
+           
     /**
      * Show the form for creating a new resource.
      *
@@ -52,12 +63,60 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = DB::select("select * from posts where id = :id", ['id' => $id]);
+        // $post = DB::table('posts')->where('id', $id)->first();
+        
+        // $post =  \App\Post::find($id);
+
+        $post =  \App\Post::findOrFail($id);
 
         return view('blog.show', ['post' => $post, 'hescomment' => true ]);
 
     }
 
+    public function getTitle($id)
+    {
+        return  DB::table('posts')->where('id', $id)->value('title');
+
+    }
+
+
+    public function getById($id)
+    {
+        // Получить конкретные записи с помощью find или first. 
+        // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
+
+        // Получение модели по её первичному ключу...
+
+        return  \App\Post::find($id);
+
+        // return \App\Post::findOrFail($id);
+
+        // return App\Post::where('id', '>', $id)->firstOrFail();
+
+    }
+    
+    public function getFirstActive()
+    {
+        // Получить конкретные записи с помощью find или first. 
+        // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
+
+        // Получение первой модели, удовлетворяющей условиям...
+
+        return \App\Post::where('active', 1)->first();
+
+
+    }
+
+    public function getByIds($ids)
+    {
+        // Также вы можете вызвать метод find с массивом первичных ключей,
+        // который вернёт коллекцию подходящих записей:
+
+        return \App\Post::find([1, 2, 3]);
+
+    }
+
+    
     /**
      * Show the form for editing the specified resource.
      *

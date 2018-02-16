@@ -22,5 +22,10 @@ Route::post('blog/store', ['uses' => 'PostsController@store', 'as' => 'store']);
 
 Route::get('blog/{id}', ['uses' => 'PostsController@show', 'as' => 'blog.show']);
 
+Route::get('admin', 'Admin\DashboardController@index')->name('admin');
 
+Route::resource('posts', 'Admin\PostsController'); 
 
+Route::resource('categories', 'Admin\CategoriesController'); 
+
+Route::resource('tags', 'Admin\TagsController'); 
