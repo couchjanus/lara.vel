@@ -15,12 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('blog', ['uses' => 'PostsController@index', 'as' => 'blog']);
+Route::get('blog', function () {
+    return view('blog.index');
+})->name('blog');
 
-Route::get('blog/create', ['uses' => 'PostsController@create', 'as' => 'create']);
-Route::post('blog/store', ['uses' => 'PostsController@store', 'as' => 'store']);
+// Route::get('blog', 'PostsController@index')->name('blog');
+
+Route::get('blogposts', 'PostsController@index')->name('blogposts');
 
 Route::get('blog/{id}', ['uses' => 'PostsController@show', 'as' => 'blog.show']);
+
+
+// Admin
 
 Route::get('admin', 'Admin\DashboardController@index')->name('admin');
 
@@ -28,4 +34,4 @@ Route::resource('posts', 'Admin\PostsController');
 
 Route::resource('categories', 'Admin\CategoriesController'); 
 
-Route::resource('tags', 'Admin\TagsController'); 
+Route::resource('tags', 'Admin\TagsController');

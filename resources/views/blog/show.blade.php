@@ -1,28 +1,28 @@
 @extends('layouts.blog')
 
-@section('meta')
-@endsection
 
-@section('title')
-@endsection
-
+@section('breadcrumb')
 <!-- Page Heading/Breadcrumbs -->
-<h1 class="mt-4 mb-3">{{ $post->title }}
-  <small>by
-    <a href="#">Janus Nic</a>
-  </small>
-</h1>
-
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
     <a href="/">Home</a>
   </li>
   <li class="breadcrumb-item">
-    <a href="{{ route('blog') }}">Blog</a>
+    <a href="/blog">Blog</a>
   </li>
   <li class="breadcrumb-item active">{{ $post->title }}</li>
 </ol>
 
+@endsection
+
+@section('header')
+<h2 class="mt-4 mb-3">{{ $post->title }}
+  <small>by
+    <a href="#">Janus Nic</a>
+  </small>
+</h2>
+
+@endsection
 
 @section('content')
 <!-- Post Content Column -->

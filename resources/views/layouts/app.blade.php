@@ -33,11 +33,13 @@
     <body class="@yield('body_class')">
         
         {{--Page--}}
-        
-        @yield('navigation')        
+        @yield('navigation')                
+        <hr>
         <!-- Page Content -->
-        
+        @yield('breadcrumb')        
+        @yield('header')        
         <div class="container">
+
             @yield('page')
         </div>
         

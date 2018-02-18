@@ -66,30 +66,132 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
+            <div class="content" id="app">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <p>@{{ message }}</p>
                 </div>
             </div>
         </div>
+
+        <div class="flex-center position-ref full-height">
+            <div class="content" id="app-2">
+            <div class="title m-b-md">
+                <span v-bind:title='message'>
+                    Подержи курсор надо мной пару секунд,
+                    чтобы увидеть динамически связанное значение title!
+                </span>
+            </div>
+            </div>
+        </div>
+        
+        <div class="flex-center position-ref full-height">
+            <div class="content"  id="app-3">
+            <div class="title m-b-md">
+                <p v-if="seen">Сейчас меня видно</p>
+            </div>
+            </div>
+        </div>
+        
+        <div class="flex-center position-ref full-height">
+            <div class="content"  id="app-4">
+            <div class="title m-b-md">
+                    <input type="text"><input type='button' value="Add New" id="button">
+                  
+                <ol>
+                    <li v-for="todo in todos">
+                    @{{ todo.text }}
+                    </li>
+                </ol>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-center position-ref full-height">
+            <div class="content"  id="app-5">
+            <div class="title m-b-md">
+              <p>@{{ message }}</p>
+              <button v-on:click="reverseMessage">Обратить порядок букв в сообщении</button>
+              </div>
+            </div>
+        </div>
+        
+        <div class="flex-center position-ref full-height">
+            <div class="content"  id="app-6">
+            <div class="title m-b-md">
+              <p>@{{ message }}</p>
+              <input v-model="message">
+            </div>
+            </div>
+            <div class="content">
+                <hr>
+            </div>
+        </div>
+
+        <!-- <script type="text/javascript" src="js/app.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script type="text/javascript">
+            (function(){
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        message: 'Hello Vue.js!',
+                    },
+                });
+                var app2 = new Vue({
+                  el: '#app-2',
+                  data: {
+                    message: 'Вот когда вы загрузили эту страницу: ' + new Date()
+                  }
+                });
+
+                var app3 = new Vue({
+                  el: '#app-3',
+                  data: {
+                    seen: true
+                  }
+                });
+                document.getElementById("app-3").addEventListener('click', function(){
+                    app3.seen = false;
+                });
+
+                var app4 = new Vue({
+                  el: '#app-4',
+                  data: {
+                    todos: [
+                      { text: 'Посадить дерево' },
+                      { text: 'Построить дом' },
+                      { text: 'Вырастить сына' }
+                    ]
+                  }
+                });
+ 
+                document.getElementById("button").addEventListener('click', function(){
+                    var newItem = document.querySelector('input[type="text"').value;
+                    app4.todos.push({ text: newItem });
+                });
+
+                var app5 = new Vue({
+                  el: '#app-5',
+                  data: {
+                    message: 'Hello Vue.js!'
+                  },
+                  methods: {
+                    reverseMessage: function () {
+                      this.message = this.message.split('').reverse().join('')
+                    }
+                  }
+                });
+
+                var app6 = new Vue({
+                  el: '#app-6',
+                  data: {
+                    message: 'Hello Vue!'
+                  }
+                });
+
+            })();
+        
+        </script>
+
     </body>
 </html>
