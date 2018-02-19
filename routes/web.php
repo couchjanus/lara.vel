@@ -23,6 +23,8 @@ Route::get('blog', function () {
 
 Route::get('blogposts', 'PostsController@index')->name('blogposts');
 
+Route::get('blogposts/{id}', ['uses' => 'PostsController@showPost', 'as' => 'blogposts.show']);
+
 Route::get('blog/{id}', ['uses' => 'PostsController@show', 'as' => 'blog.show']);
 
 

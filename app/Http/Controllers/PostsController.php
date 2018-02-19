@@ -53,18 +53,12 @@ class PostsController extends Controller
     }
 
 
-    public function getById($id)
+    public function showPost($id)
     {
-        // Получить конкретные записи с помощью find или first. 
-        // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
 
-        // Получение модели по её первичному ключу...
+        $response = \App\Post::findOrFail($id);
 
-        return  \App\Post::find($id);
-
-        // return \App\Post::findOrFail($id);
-
-        // return App\Post::where('id', '>', $id)->firstOrFail();
+        return response()->json($response);
 
     }
     
@@ -88,5 +82,7 @@ class PostsController extends Controller
         return \App\Post::find([1, 2, 3]);
 
     }
+
+    
 
 }
