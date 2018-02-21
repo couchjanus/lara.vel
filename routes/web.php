@@ -19,19 +19,15 @@ Route::get('blog', function () {
     return view('blog.index');
 })->name('blog');
 
-// Route::get('blog', 'PostsController@index')->name('blog');
-
 Route::get('blogposts', 'PostsController@index')->name('blogposts');
 
-Route::get('blog/{id}', ['uses' => 'PostsController@show', 'as' => 'blog.show']);
+// Route::get('blog/{id}', ['uses' => 'PostsController@show', 'as' => 'blog.show']);
+
+Route::get('blog/{slug}', 'PostsController@showBySlug')->name('blog.show');
 
 
 // Admin
-
 Route::get('admin', 'Admin\DashboardController@index')->name('admin');
-
 Route::resource('posts', 'Admin\PostsController'); 
-
 Route::resource('categories', 'Admin\CategoriesController'); 
-
 Route::resource('tags', 'Admin\TagsController');

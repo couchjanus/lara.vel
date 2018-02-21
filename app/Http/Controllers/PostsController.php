@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use DB;
-
 use App\Post;
 
 class PostsController extends Controller
@@ -47,11 +44,34 @@ class PostsController extends Controller
         return view('blog.show', ['post' => $post, 'hescomment' => true ]);
     }
 
-    public function getTitle($id)
+    // PostsController, метод showBySlug:
+    public function showBySlug($slug) 
     {
-        return  DB::table('posts')->where('id', $id)->value('title');
-    }
+        /** 
+         * Вначале мы проверяем, не является ли слаг числом. 
+         * Часто слаги внедряют в программу уже после того, 
+         * как был другой механизм построения пути. 
+         * Например, через числовые индексы. 
+         * Тогда может получится ситуация, что пользователь, 
+         * зайдя на сайт по старой ссылке, увидит 404 ошибку, 
+         * что такой страницы не существует. 
+        */
+        if (is_numeric($slug)) {
+            // Get post for slug.
+            $post = Post::findOrFail($slug);
+            
+            return Redirect::to(route('blog.show', $post->slug), 301); 
+            // 301 редирект со старой страницы, на новую.    
+        }
+        // Get post for slug.
+        $post = Post::whereSlug($slug)->firstOrFail();
 
+        return view('blog.show', [
+            'post' => $post,
+            'hescomment' => true
+            ]
+        );
+    }
 
     public function getById($id)
     {
@@ -72,12 +92,10 @@ class PostsController extends Controller
     {
         // Получить конкретные записи с помощью find или first. 
         // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
-
         // Получение первой модели, удовлетворяющей условиям...
 
         return \App\Post::where('active', 1)->first();
-
-
+        
     }
 
     public function getByIds($ids)

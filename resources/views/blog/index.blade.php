@@ -30,11 +30,12 @@
               <h2 class="card-title">@{{ post.title }}</h2>  
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
               
-              <a :href="'/blog/' + post.id" class="btn btn-primary">Read More &rarr;</a>
+              <a :href="'/blog/' + post.slug" class="btn btn-primary">Read More &rarr;</a>
           </div>
+
           <div class="card-footer text-muted">
               Posted on  by&nbsp;
-              <a href="/blog/@{{ post.id }}"> Janus Nic</a>
+              <a href=""> Janus Nic</a>
           </div>
 
     <!-- Pagination -->
