@@ -48,7 +48,7 @@
         </div>
 
         <div class="modal-body">
-          Are you sure to delete category: <b>{{ $category->title }} </b>?
+          Are you sure to delete category: <b>{{ $category->name }} </b>?
         </div>
         <div class="modal-footer">
           <a href="{{ url('/categories') }}">

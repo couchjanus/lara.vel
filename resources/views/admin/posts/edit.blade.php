@@ -80,17 +80,17 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 col-form-label">Post Tags</label>
+                <label class="col-md-3 col-form-label" for="tags">Post Tags</label>
                 <div class="col-md-9">
-                  <label class="checkbox-inline" for="inline-checkbox1">
-                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1">One
-                  </label>
-                  <label class="checkbox-inline" for="inline-checkbox2">
-                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" value="option2">Two
-                  </label>
-                  <label class="checkbox-inline" for="inline-checkbox3">
-                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" value="option3">Three
-                  </label>
+                  <select name="tags[]" id="tags" class="form-control state-tags-multiple" multiple="multiple">
+
+                    @foreach($tags as $key => $value)
+                      <option value="{{ $key }}" 
+                       {{ (collect(old('tags'))->contains($key)) ? 'selected':'' }}>
+                       {{ $value }}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>
@@ -104,4 +104,13 @@
     </div>
   </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+        $('').select2({
+            placeholder: 'Choose A Tag',
+            tags: true 
+        });
+        $('#tags').select2().val({!! json_encode($post->tags()->allRelatedIds()->toArray()) !!}).trigger('change');
+</script>
 @endsection

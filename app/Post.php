@@ -5,6 +5,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Category;
+use App\Tag;
+
 class Post extends Model
 {
     use Sluggable;
@@ -27,7 +30,12 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo(Category::class);
+    }
+    
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
 }

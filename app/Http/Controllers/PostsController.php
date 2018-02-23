@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -15,6 +16,7 @@ class PostsController extends Controller
     
     public function index()
     {
+        
         $posts = Post::paginate(3);
 
         $response = [
@@ -47,15 +49,6 @@ class PostsController extends Controller
     // PostsController, метод showBySlug:
     public function showBySlug($slug) 
     {
-        /** 
-         * Вначале мы проверяем, не является ли слаг числом. 
-         * Часто слаги внедряют в программу уже после того, 
-         * как был другой механизм построения пути. 
-         * Например, через числовые индексы. 
-         * Тогда может получится ситуация, что пользователь, 
-         * зайдя на сайт по старой ссылке, увидит 404 ошибку, 
-         * что такой страницы не существует. 
-        */
         if (is_numeric($slug)) {
             // Get post for slug.
             $post = Post::findOrFail($slug);
@@ -75,25 +68,11 @@ class PostsController extends Controller
 
     public function getById($id)
     {
-        // Получить конкретные записи с помощью find или first. 
-        // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
-
-        // Получение модели по её первичному ключу...
-
-        return  \App\Post::find($id);
-
-        // return \App\Post::findOrFail($id);
-
-        // return App\Post::where('id', '>', $id)->firstOrFail();
-
+        return \App\Post::findOrFail($id);
     }
     
     public function getFirstActive()
     {
-        // Получить конкретные записи с помощью find или first. 
-        // Вместо коллекции моделей эти методы возвращают один экземпляр модели:
-        // Получение первой модели, удовлетворяющей условиям...
-
         return \App\Post::where('active', 1)->first();
         
     }

@@ -9,10 +9,13 @@
         CMS
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/posts"><i class="icon-calculator"></i> Posts</a>
+        <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-calculator"></i> Posts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/categories"><i class="icon-calculator"></i> Categories</a>
+        <a class="nav-link" href="{{route('categories.index')}}"><i class="icon-calculator"></i> Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('tags.index')}}"><i class="icon-calculator"></i> Tags</a>
       </li>
     </ul>
   </nav>

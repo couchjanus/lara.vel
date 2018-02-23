@@ -71,15 +71,11 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label">Post Tags</label>
                 <div class="col-md-9">
-                  <label class="checkbox-inline" for="inline-checkbox1">
-                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1">One
-                  </label>
-                  <label class="checkbox-inline" for="inline-checkbox2">
-                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" value="option2">Two
-                  </label>
-                  <label class="checkbox-inline" for="inline-checkbox3">
-                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" value="option3">Three
-                  </label>
+                  <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                    @foreach($tags as $tag)
+                      <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>
@@ -93,4 +89,12 @@
     </div>
   </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+        $('.select2-multi').select2({
+            placeholder: 'Choose A Tag',
+            tags: true 
+        });
+</script>
 @endsection
