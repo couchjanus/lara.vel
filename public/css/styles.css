@@ -1,10 +1,10 @@
 body {
-    padding-top: 54px;
+    height: 100vh;
   }
   
   @media (min-width: 992px) {
     body {
-      padding-top: 56px;
+      /* padding-top: 56px; */
     }
   }
   

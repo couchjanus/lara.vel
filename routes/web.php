@@ -31,3 +31,14 @@ Route::get('admin', 'Admin\DashboardController@index')->name('admin');
 Route::resource('posts', 'Admin\PostsController'); 
 Route::resource('categories', 'Admin\CategoriesController'); 
 Route::resource('tags', 'Admin\TagsController');
+Route::resource('users', 'Admin\UsersManagementController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('profile/{username}', [
+    'as'   => '{username}',
+    'uses' => 'ProfileController@show',
+    ]
+);

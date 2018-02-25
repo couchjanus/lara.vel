@@ -1,57 +1,40 @@
-<!DOCTYPE html>
+@extends('layouts.master')
 
-<!-- Stored in resources/views/layouts/app.blade.php -->
+    {{--Styles--}}
+    @section('styles')
+        <!-- Bootstrap core CSS -->
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    @endsection
 
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--Head--}}
+    @section('body_class')
+    app flex-row align-items-center
+    @endsection
+    
+    @section('navigation')
+       @include('shared.navigation')
+    @endsection
+    
+    {{--Page--}}
+    
+    @section('page')
+       <div class="row">
+          @yield('content')
+       </div>
+    @endsection
 
-        {{--CSRF Token--}}
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    @section('footer')
+        @include('shared.footer')
+    @endsection
+    
+    {{--Scripts--}}
 
-        {{--Title and Meta--}}
-
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>App Name - @yield('title')</title>
-
-        @yield('meta')
-
-        {{--Common App Styles--}}
-        
-
-        {{--Styles--}}
-        @yield('styles')
-
-        {{--Head--}}
-        @yield('head')
-
-    </head>
-    <body class="@yield('body_class')">
-        
-        {{--Page--}}
-        @yield('navigation')                
-        <hr>
-        <!-- Page Content -->
-        @yield('breadcrumb')        
-        @yield('header')        
-        <div class="container">
-
-            @yield('page')
-        </div>
-        
-        @yield('footer')
-        
-        {{--Common Scripts--}}
-
-        {{--Laravel Js Variables--}}
-
-        {{--Scripts--}}
-
-        @yield('scripts')
-        
-    </body>
-</html>
+    @section('scripts')
+        <!-- Bootstrap core JavaScript -->
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @endsection
