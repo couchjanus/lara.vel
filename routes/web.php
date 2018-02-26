@@ -33,6 +33,10 @@ Route::resource('categories', 'Admin\CategoriesController');
 Route::resource('tags', 'Admin\TagsController');
 Route::resource('users', 'Admin\UsersManagementController');
 
+Route::get('/trashed', 'Admin\UsersManagementController@indexTrashed')->name('users.trashed');
+
+Route::post('/restore/{id}', 'Admin\UsersManagementController@restore')->name('users.restore');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

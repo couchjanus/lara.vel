@@ -27,8 +27,7 @@
           </div>
 
           <div class="card-block">
-          {!! Form::open(array('action' => 'Admin\UsersManagementController@store')) !!}
-
+          {!! Form::open(['route' => 'users.store']) !!}
             <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
               {!! Form::label('name', 'User Name', array('class' => 'col-md-3 control-label')); !!}
               <div class="col-md-9">

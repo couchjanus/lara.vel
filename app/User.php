@@ -64,6 +64,7 @@ class User extends Authenticatable
         }
 
         return false;
+
     }
 
     public function assignProfile($profile)

@@ -34,6 +34,26 @@ class UsersManagementController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTrashed()
+    {
+        $users = User::onlyTrashed()->paginate(env('USER_LIST_PAGINATION_SIZE'));
+        return view('admin.users.trashed', compact('users'));
+    }
+    
+    public function restore($id)
+    {
+        
+        User::withTrashed()
+        ->where('id', $id)
+        ->restore();
+
+        return redirect(route('users.trashed'))->with('message', 'An user has been restored successfully');
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

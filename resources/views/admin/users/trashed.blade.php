@@ -7,13 +7,10 @@
       <div class="panel panel-default">
       <div class="panel-heading">Users</div>
         <div class="panel-body">
-          <a href="{{ url('/users/create') }}" class="btn btn-success btn-sm" title="Add New User">
-              <i class="fa fa-plus" aria-hidden="true"></i> Add New
-          </a>
-          <a href="{{ route('users.trashed') }}" class="btn btn-success btn-sm" title="All Posts">
-                  <i class="fa fa-arrow-right" aria-hidden="true"></i> Trashed List
-          </a>
-          <br/>
+            <a href="{{ route('users.index') }}" class="btn btn-success btn-sm" title="All Posts">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back
+            </a>
+            <br/>
             @if (Session::get('message') != Null)
               <div class="row">
                   <div class="col-md-9">
@@ -27,7 +24,6 @@
               </div>
             @endif
 
-
             <br/>
             <div class="table-responsive">
                   
@@ -37,8 +33,6 @@
                     <th>#</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -49,11 +43,12 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{$user->first_name}}</td>
-                        <td>{{$user->last_name}}</td>
                         <td>
-                            <a title="Show User" href="{{ route('users.show', ['id'=> $user->id]) }}" class="btn btn-primary"><span class="fa fa-newspaper-o"></span></a>
-                            <a title="Edit article" href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-warning"><span class="fa fa-edit"></span></a>
+                            <form class="" action="{{ route('users.restore', ['id' => $user->id]) }}" method="post">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-warning" title="Restore" value="delete"><span class="fa fa-window-restore"></span> Restore</button>
+                            </form>
+
                             <button title="Delete user" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_{{ $user->id  }}"><span class="fa fa-trash-o"></span></button>
                         </td>
                     </tr>
