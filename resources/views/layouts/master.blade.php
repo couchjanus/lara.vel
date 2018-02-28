@@ -42,7 +42,7 @@
         
         @yield('footer')
         {{--Common Scripts--}}
-        <script src="{{ asset('js/app.js') }}"></script>
+        
         {{--Laravel Js Variables--}}
 
         {{--Scripts--}}

@@ -46,3 +46,14 @@ Route::get('profile/{username}', [
     'uses' => 'ProfileController@show',
     ]
 );
+
+Route::get('/email', function () {
+    return new App\Mail\ContactEmail();
+});
+
+Route::get('contact', 'ContactController@create')->name('contact.create');
+Route::post('contact', 'ContactController@store')->name('contact.store');
+
+Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name('auth.verify'); 
+Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
+

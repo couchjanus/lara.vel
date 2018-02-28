@@ -152,6 +152,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
          /*
          * Application Service Providers...
          */
@@ -161,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\WidgetServiceProvider::class,
+        App\Providers\EloquentEventServiceProvider::class,
 
     ],
 

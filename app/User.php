@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\VerificationToken;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -76,4 +78,10 @@ class User extends Authenticatable
     {
         return $this->profiles()->detach($profile);
     }
+
+    public function verificationToken()
+    {
+        return $this->hasOne(VerificationToken::class);
+    }
+
 }
