@@ -60,6 +60,12 @@
                                 </a>
                             </div>
                         </div>
+                        <p class="text-center margin-bottom-3">
+                            Or Login with
+                        </p>
+
+                        @include('shared.socials-icons')
+
                     </form>
                 </div>
             </div>

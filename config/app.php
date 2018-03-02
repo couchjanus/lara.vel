@@ -153,6 +153,8 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Creativeorange\Gravatar\GravatarServiceProvider::class,
          /*
          * Application Service Providers...
          */
@@ -215,6 +217,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
 
     ],
 

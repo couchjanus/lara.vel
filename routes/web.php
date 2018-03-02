@@ -41,11 +41,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('profile/{username}', [
-    'as'   => '{username}',
-    'uses' => 'ProfileController@show',
-    ]
+
+// Route::get('profile/{username}', [
+//     'as'   => '{username}',
+//     'uses' => 'ProfileController@show',
+//     ]
+// );
+
+
+Route::group(
+    [
+        'middleware' => ['auth', 'currentUser']], function () {
+            Route::get(
+                'profile/{username}', [
+                    'as'   => '{username}',
+                    'uses' => 'ProfileController@show',
+                    ]
+            );
+        }
 );
+
 
 Route::get('/email', function () {
     return new App\Mail\ContactEmail();
@@ -56,4 +71,8 @@ Route::post('contact', 'ContactController@store')->name('contact.store');
 
 Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name('auth.verify'); 
 Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
+
+// Socialite Register Routes
+Route::get('social/{provider}', 'Auth\SocialController@redirect')->name('social.redirect');
+Route::get('social/{provider}/callback', 'Auth\SocialController@handle')->name('social.handle');
 

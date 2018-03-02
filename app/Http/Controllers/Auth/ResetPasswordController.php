@@ -53,6 +53,6 @@ class ResetPasswordController extends Controller
             return redirect('/login')->withInfo('Password changed successfully. Please verify your email');
         }
         return redirect($this->redirectPath())
-                            ->with('status', trans($response));
+                            ->with('status', $response);
     }
 }

@@ -94,4 +94,14 @@ class User extends Authenticatable
         return static::where('email', $email);
     }
 
+    /**
+     * Build Social Relationships.
+     *
+     * @var array
+     */
+    public function social()
+    {
+        return $this->hasMany('App\Social');
+    }
+
 }
