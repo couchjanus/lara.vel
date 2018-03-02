@@ -15,33 +15,27 @@ class VerificationController extends Controller
 {
     public function verify(VerificationToken $token)
     {
-        $token->user()->update(
-            [
-            'verified' => true
-            ]
-        );
+    	$token->user()->update([
+    		'verified' => true
+    	]);
 
-        $token->delete();
+    	$token->delete();
 
-        // Uncomment the following lines if you want to login the user 
-        // directly upon email verification
-        // Auth::login($token->user);
-        // return redirect('/home');
+    	//Auth::login($token->user);
 
-        return redirect('/login')->withInfo('Email verification succesful. Please login again');
+    	return redirect('/login')->withInfo('Email verification succesful. Please login again');
     }
 
     public function resend(Request $request)
     {
-        $user = User::byEmail($request->email)->firstOrFail();
+    	$user = User::byEmail($request->email)->firstOrFail();
 
-        if ($user->hasVerifiedEmail()) {
+        if($user->hasVerifiedEmail()) {
             return redirect('/home')->withInfo('Your email has already been verified');
         }
 
         event(new UserRequestedVerificationEmail($user));
 
         return redirect('/login')->withInfo('Verification email resent. Please check your inbox');
-
     }
 }

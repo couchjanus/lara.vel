@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 
-
 class ResetPasswordController extends Controller
 {
     /*

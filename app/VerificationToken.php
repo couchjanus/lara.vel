@@ -10,7 +10,6 @@ class VerificationToken extends Model
 {
     protected $fillable = ['token'];
 
-
     public function getRouteKeyName()
     {
         return 'token';

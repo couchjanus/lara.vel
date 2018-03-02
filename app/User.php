@@ -20,7 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password','first_name',
-        'last_name',
+        'last_name', 'verified'
     ];
 
     /**
@@ -82,6 +82,16 @@ class User extends Authenticatable
     public function verificationToken()
     {
         return $this->hasOne(VerificationToken::class);
+    }
+
+    public function hasVerifiedEmail()
+    {
+        return $this->verified;
+    }
+
+    public static function byEmail($email)
+    {
+        return static::where('email', $email);
     }
 
 }
