@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends FormRequest
+class UpdateRolesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,8 +12,6 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        // $postId = $this->route('post');
-        // return Gate::allows('update', Post::findOrFail($postId));
         return true;
     }
 
@@ -26,11 +23,7 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|max:255',
-            'email'    => 'email|max:255|unique:users',
-            'password' => 'present|confirmed|min:6',
+            'name' => 'required',
         ];
     }
 }
-
-

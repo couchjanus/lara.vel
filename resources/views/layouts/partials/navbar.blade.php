@@ -18,7 +18,7 @@
         @if (Auth::check())
           <img src="" class="img-avatar" alt="{{ Auth::user()->email }}">
         @else
-          <img src="{{ asset('images/avatars/avatar.jpg') }}" class="img-avatar" alt="avatar">
+          <img src="{{ asset('images/avatars/avatar.png') }}" class="img-avatar" alt="avatar">
         @endif
       </a>
       <div class="dropdown-menu dropdown-menu-right">
@@ -38,7 +38,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
- <form id="logout-form" action="" method="POST" style="display: none;">
-  {{ csrf_field() }}
+
+ <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+ @csrf
+
 </form>
 </header>

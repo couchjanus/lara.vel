@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Profile;
 use App\User;
+use App\Role;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -60,7 +61,8 @@ class UsersManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::get()->pluck('name', 'id');
+        return view('admin.users.create')->withRoles($roles);;
     }
 
     /**
@@ -111,7 +113,10 @@ class UsersManagementController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.edit')->withUser($user);
+
+        $roles = Role::get()->pluck('name', 'id');
+        
+        return view('admin.users.edit')->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -122,13 +127,13 @@ class UsersManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $currentUser = Auth::user();
-        $user = User::find($id);
-        $user = $request->all();
-        $user->save();
-        return back()->with('message', 'User has been updated successfully');
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        $roles = $request->input('roles') ? $request->input('roles') : [];
+        $user->roles()->sync($request->roles);
+        return redirect(route('users.index'))->with('message', 'User has been updated successfully');
     }
 
     /**

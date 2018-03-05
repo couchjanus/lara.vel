@@ -2,6 +2,9 @@
 
     {{--Styles--}}
     @section('styles')
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
+
     <style>
 
     #wrapper {

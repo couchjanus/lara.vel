@@ -32,6 +32,7 @@ Route::resource('posts', 'Admin\PostsController');
 Route::resource('categories', 'Admin\CategoriesController'); 
 Route::resource('tags', 'Admin\TagsController');
 Route::resource('users', 'Admin\UsersManagementController');
+Route::resource('roles', 'Admin\RolesController');
 
 Route::get('/trashed', 'Admin\UsersManagementController@indexTrashed')->name('users.trashed');
 
@@ -47,6 +48,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     'uses' => 'ProfileController@show',
 //     ]
 // );
+
+Route::get('/post', 'PostsController@getPosts')->name('user.posts');
+
+Route::get('/post/{post}', 'PostsController@showPost')->name('user.posts.show');
+
+Route::get('/post/{post}/edit', 'PostsController@editPost')->name('user.posts.edit');
+
+Route::delete('/post/{post}', 'PostsController@destroyPost')->name('user.posts.destroy');
 
 
 Route::group(

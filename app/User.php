@@ -104,4 +104,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Social');
     }
 
+    public function setPasswordAttribute($input)
+    {
+        if ($input)
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+    }
+    
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
 }
