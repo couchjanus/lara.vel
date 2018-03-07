@@ -5,6 +5,7 @@
         @include('profiles.partials.sidebar')
         <div id="page-content-wrapper">
             <div class="container-fluid">
+            
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
@@ -13,6 +14,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
+                    
 
                     You are logged in!
            

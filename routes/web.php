@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('blog', function () {
     return view('blog.index');
@@ -33,7 +33,7 @@ Route::resource('categories', 'Admin\CategoriesController');
 Route::resource('tags', 'Admin\TagsController');
 Route::resource('users', 'Admin\UsersManagementController');
 Route::resource('roles', 'Admin\RolesController');
-
+Route::resource('permissions', 'Admin\PermissionsController');
 Route::get('/trashed', 'Admin\UsersManagementController@indexTrashed')->name('users.trashed');
 
 Route::post('/restore/{id}', 'Admin\UsersManagementController@restore')->name('users.restore');

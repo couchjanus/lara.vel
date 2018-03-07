@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Role;
-// use App\Permission;
+use App\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -35,11 +35,11 @@ class RolesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $permissions = Permission::get()->pluck('name', 'name');
-
+        // if (! Gate::allows('users_manage')) {
+        //     return abort(401);
+        // }
+        // $permissions = Permission::get()->pluck('name', 'name');
+        $permissions = \App\Permission::pluck('name', 'id');
         return view('admin.roles.create', compact('permissions'));
     }
 
@@ -51,13 +51,12 @@ class RolesController extends Controller
      */
     public function store(StoreRolesRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $role = Role::create($request->except('permission'));
-        $permissions = $request->input('permission') ? $request->input('permission') : [];
-        $role->givePermissionTo($permissions);
+        // if (! Gate::allows('users_manage')) {
+        //     return abort(401);
+        // }
 
+        $role = Role::create($request->all());
+        $role->permissions()->sync($request->input('permission_list'), false);
         return redirect()->route('admin.roles.index');
     }
 
@@ -70,13 +69,12 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $permissions = Permission::get()->pluck('name', 'name');
-
+        // if (! Gate::allows('users_manage')) {
+        //     return abort(401);
+        // }
+        
+        $permissions = Permission::get()->pluck('name', 'id');
         $role = Role::findOrFail($id);
-
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
@@ -89,15 +87,14 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, $id)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('users_manage')) {
+        //     return abort(401);
+        // }
         $role = Role::findOrFail($id);
+        $permissions = \App\Permission::pluck('name', 'id');
         $role->update($request->except('permission'));
-        $permissions = $request->input('permission') ? $request->input('permission') : [];
-        $role->syncPermissions($permissions);
-
-        return redirect()->route('admin.roles.index');
+        $role->permissions()->sync($request->input('permission_list'));
+        return redirect()->route('roles.index');
     }
 
 
@@ -109,9 +106,9 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('users_manage')) {
+        //     return abort(401);
+        // }
         $role = Role::findOrFail($id);
         $role->delete();
 

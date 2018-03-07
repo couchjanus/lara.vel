@@ -46,11 +46,17 @@
             </div>
 
 
+
+               
+                            
+
             <div class="form-group has-feedback row {{ $errors->has('roles') ? ' has-error ' : '' }}">
-              {!! Form::label('roles', 'User Roles*', array('class' => 'col-md-3 control-label')); !!}
+              
+              {!! Form::label('role_list', 'User Roles*', array('class' => 'col-md-3 control-label')) !!}
+
               <div class="col-md-9">
                 <div class="input-group">
-                  {!! Form::select('roles[]', $roles, old('roles'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'required' => '']) !!}
+                {!! Form::select('role_list[]', $roles, $user->roles, ['id' => 'role_list', 'class' => 'form-control select2', 'multiple']) !!}
                   <label class="input-group-addon" for="roles"><i class="fa fa-fw-user" aria-hidden="true"></i></label>
                 </div>
                 @if($errors->has('roles'))
@@ -105,3 +111,15 @@
   </div>
 </div>
 @endsection
+@section('scripts')
+    <script>
+        $('').select2({
+            placeholder: 'Choose A Role',
+            roles: true 
+        });
+        $('#role_list').select2().val({!! json_encode($user->roles()->allRelatedIds()->toArray()) !!}).trigger('change');
+
+
+    </script>
+   
+@stop

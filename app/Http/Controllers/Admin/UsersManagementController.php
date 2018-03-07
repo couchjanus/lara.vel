@@ -83,10 +83,13 @@ class UsersManagementController extends Controller
             'password'         => bcrypt($request->input('password')),
         ]);
 
+        $user->roles()->sync($request->input('role_list'), false);
+
         $profile = new Profile();
         $user->profile()->save($profile);
         
         $user->save();
+        
         return redirect(route('users.index'))->with('message', 'An user has been created successfully');
     }
 
@@ -131,8 +134,7 @@ class UsersManagementController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        $roles = $request->input('roles') ? $request->input('roles') : [];
-        $user->roles()->sync($request->roles);
+        $user->roles()->sync($request->input('role_list'));
         return redirect(route('users.index'))->with('message', 'User has been updated successfully');
     }
 

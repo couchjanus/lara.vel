@@ -2,7 +2,7 @@
 
 
 @section('breadcrumb')
-
+{{ Breadcrumbs::render('blogpost') }}
 <ol class="breadcrumb">
 <li class="breadcrumb-item">
   <a href="{{ url('/') }}">Home</a>
