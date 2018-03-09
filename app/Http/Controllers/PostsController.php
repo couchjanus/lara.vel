@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
-
 use Gate;
 use Auth;
 
@@ -46,7 +45,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $post =  \App\Post::findOrFail($id);
-        return view('blog.show', ['post' => $post, 'hescomment' => true ]);
+        return view('blog.show', ['post' => $post, 'hescomment' => true]);
     }
 
     // PostsController, метод showBySlug:
@@ -60,11 +59,17 @@ class PostsController extends Controller
             // 301 редирект со старой страницы, на новую.    
         }
         // Get post for slug.
-        $post = Post::whereSlug($slug)->firstOrFail();
 
+        $post = Post::whereSlug($slug)->firstOrFail();
+   
+        $this->breadcrumbs
+            ->addCrumb('Blog', 'blog')
+            ->addCrumb($post->title, "");
+   
         return view('blog.show', [
             'post' => $post,
-            'hescomment' => true
+            'hescomment' => true,
+            'breadcrumbs' => $this->breadcrumbs 
             ]
         );
     }

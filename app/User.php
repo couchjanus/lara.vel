@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\VerificationToken;
 
 use Hash;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -148,6 +149,11 @@ class User extends Authenticatable
         }
 
         return !! $this->roles->intersect($role)->count();
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 
 }

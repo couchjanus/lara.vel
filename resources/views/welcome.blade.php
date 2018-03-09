@@ -80,7 +80,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
-                    {{-- Breadcrumbs::render('welcome') --}}
+                    
                 </div>
 
                 <div class="links">

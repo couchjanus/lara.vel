@@ -166,6 +166,7 @@ return [
         App\Providers\WidgetServiceProvider::class,
         App\Providers\EloquentEventServiceProvider::class,
         App\Providers\BreadcrumsServiceProvider::class,
+        App\Providers\OnlineServiceProvider::class,
         
     ],
 
@@ -220,7 +221,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Breadcrumbs' => App\Helpers\Facades\Breadcrumbs::class,
+        'Breadcrumbs' => App\Helpers\Facades\BreadcrumbsFacade::class,
+        'Online' => App\Helpers\Online::class,
 
     ],
 

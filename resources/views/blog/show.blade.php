@@ -1,18 +1,8 @@
 @extends('layouts.blog')
 
-
-@section('breadcrumb')
 <!-- Page Heading/Breadcrumbs -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/">Home</a>
-  </li>
-  <li class="breadcrumb-item">
-    <a href="/blog">Blog</a>
-  </li>
-  <li class="breadcrumb-item active">{{ $post->title }}</li>
-</ol>
-
+@section('breadcrumb')
+  {!! $breadcrumbs->render() !!} 
 @endsection
 
 @section('header')

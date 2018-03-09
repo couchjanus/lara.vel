@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
+
+Route::name('welcome')->get('/', function () {
     return view('welcome');
-})->name('welcome');
+});
+
 
 Route::get('blog', function () {
     return view('blog.index');
