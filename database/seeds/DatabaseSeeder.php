@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(CategoriesSeeder::class);
         // $this->call(ThemesTableSeeder::class);
         // $this->call(RoleSeeder::class);
-        $this->call(PermissionsSeeder::class);
+        // $this->call(PermissionsSeeder::class);
+        $this->call(PagesSeeder::class);
         // Model::reguard();
     }
 }
