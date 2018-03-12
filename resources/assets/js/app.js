@@ -22,9 +22,10 @@ window.Vue = require('vue');
 // });
 
 Vue.component('pagination', require('./components/PaginationComponent.vue'));
+Vue.component('image-component', require('./components/ImageuploadComponent.vue'));
 
 const app = new Vue({
-    el: '#blog',
+    el: '#app',
 
     data: {
         posts: {},

@@ -155,6 +155,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
          /*
          * Application Service Providers...
          */
@@ -167,6 +168,7 @@ return [
         App\Providers\EloquentEventServiceProvider::class,
         App\Providers\BreadcrumsServiceProvider::class,
         App\Providers\OnlineServiceProvider::class,
+        App\Providers\PageServiceProvider::class,
         
     ],
 
@@ -223,6 +225,8 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Breadcrumbs' => App\Helpers\Facades\BreadcrumbsFacade::class,
         'Online' => App\Helpers\Online::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Page' => App\Helpers\Facades\Page::class,
 
     ],
 

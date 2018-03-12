@@ -90,3 +90,8 @@ Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.v
 Route::get('social/{provider}', 'Auth\SocialController@redirect')->name('social.redirect');
 Route::get('social/{provider}/callback', 'Auth\SocialController@handle')->name('social.handle');
 
+Route::get('/pictures', 'Admin\PicturesController@index');
+Route::post('/image/store', 'Admin\PicturesController@store');
+
+
+Route::get('/{slug}', 'PagesController@index');

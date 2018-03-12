@@ -7,6 +7,7 @@
   <meta name="description" content="Admin Template">
   <meta name="author" content="">
   <meta name="keyword" content="Bootstrap,Admin,Template">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
   <title>Admin Template</title>
 
@@ -26,7 +27,7 @@
   <div class="app-body">
     @include('layouts.partials.sidebar')
     <!-- Main content -->
-    <main class="main">
+    <main class="main" id="app">
 
       <!-- Breadcrumb -->
       @include('layouts.partials.breadcrumb')

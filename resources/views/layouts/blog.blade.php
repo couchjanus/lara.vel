@@ -22,7 +22,7 @@
     {{--Page--}}
     
     @section('page')
-       <div class="row">
+       <div class="row" id="app">
           @yield('content')
           @yield('sidebar')
        </div>

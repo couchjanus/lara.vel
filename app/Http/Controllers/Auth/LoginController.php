@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Cache;
 
 class LoginController extends Controller
 {
@@ -38,6 +39,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout()
+    {
+        Cache::forget('user-is-online-' . Auth::user()->id);
+        Auth::logout();
+
+        return redirect('');
     }
 
     /**
