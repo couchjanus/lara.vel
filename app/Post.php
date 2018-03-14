@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Category;
 use App\Tag;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
     use Sluggable;
+    use Searchable;
 
     protected $fillable = ['title','category_id','content', 'slug', 'is_active'];
     

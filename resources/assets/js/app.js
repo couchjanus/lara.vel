@@ -7,7 +7,6 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -23,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('pagination', require('./components/PaginationComponent.vue'));
 Vue.component('image-component', require('./components/ImageuploadComponent.vue'));
+Vue.component('search',require('./components/Search.vue'));
 
 const app = new Vue({
     el: '#app',

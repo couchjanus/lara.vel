@@ -83,4 +83,9 @@ return [
         'redirect'      => env('37SIGNALS_REDIRECT_URI'),
     ],
 
+    'search' => [
+        'enabled' => env('SEARCH_ENABLED', false),
+        'hosts' => explode(',', env('SEARCH_HOSTS')),
+    ],
+
 ];

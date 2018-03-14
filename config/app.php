@@ -156,6 +156,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
          /*
          * Application Service Providers...
          */
@@ -169,6 +170,8 @@ return [
         App\Providers\BreadcrumsServiceProvider::class,
         App\Providers\OnlineServiceProvider::class,
         App\Providers\PageServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+        
         
     ],
 

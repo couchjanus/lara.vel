@@ -93,5 +93,19 @@ Route::get('social/{provider}/callback', 'Auth\SocialController@handle')->name('
 Route::get('/pictures', 'Admin\PicturesController@index');
 Route::post('/image/store', 'Admin\PicturesController@store');
 
+Route::get('/articles', function () {
+    return view('articles.index', [
+        'articles' => App\Entities\Article::all(),
+    ]);
+});
 
-Route::get('/{slug}', 'PagesController@index');
+// Route::get('/{slug}', 'PagesController@index');
+
+use \App\Repositories\ArticlesRepository;
+
+Route::get('/search', function (ArticlesRepository $repository) {
+    $articles = $repository->search((string) request('q'));
+    return view('articles.index', [
+    	'articles' => $articles,
+    ]);
+});
