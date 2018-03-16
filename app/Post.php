@@ -4,6 +4,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Traits\HasComments;
 
 use App\Category;
 use App\Tag;
@@ -13,8 +14,9 @@ class Post extends Model
 {
     use Sluggable;
     use Searchable;
+    use HasComments;
 
-    protected $fillable = ['title','category_id','content', 'slug', 'is_active'];
+    protected $fillable = ['title','category_id','content', 'slug', 'is_active', 'user_id'];
     
     /**
      * Return the sluggable configuration array for this model.
@@ -43,6 +45,11 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function pictures()
+    {
+        return $this->belongsToMany(Picture::class);
     }
 
 }

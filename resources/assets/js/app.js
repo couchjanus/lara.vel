@@ -14,15 +14,11 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-// const app = new Vue({
-//     el: '#app'
-// });
 
 Vue.component('pagination', require('./components/PaginationComponent.vue'));
 Vue.component('image-component', require('./components/ImageuploadComponent.vue'));
 Vue.component('search',require('./components/Search.vue'));
+Vue.component('comments',require('./components/comments.vue'));
 
 const app = new Vue({
     el: '#app',

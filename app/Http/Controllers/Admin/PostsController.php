@@ -9,6 +9,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -45,9 +46,34 @@ class PostsController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $post = $request->all();
-        $post = new Post($post);
+        
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->category_id = $request->category_id;
+        $post->is_active = $request->is_active;
+        $post->user_id = Auth::id();
+
         $post->save();
+        
+        if ($request->hasFile('image') ) {
+            $post_thumbnail = $request->file('image');
+         
+            $filename = time() . '.' . $post_thumbnail->getClientOriginalExtension();
+                           
+            \Image::make($post_thumbnail)->resize(300, 300)->save( public_path('images/pictures/' . $filename ) );
+    
+        }
+        
+
+        $image = new \App\Picture();
+        $image->file_name = $filename;
+        $image->save();
+
+        $picid = \App\Picture::all()->last()->id;
+
+        $post->pictures()->sync($picid, false);
+
         $post->tags()->sync($request->tags, false);
         return redirect(route('posts.index'))->with('message', 'The blog post was successfully save!');
     }

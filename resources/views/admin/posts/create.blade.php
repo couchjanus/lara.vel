@@ -28,7 +28,8 @@
               </a>
           </div>
           
-          <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal" enctype="multipart/form-data">
+    
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="card-body">
               
@@ -45,6 +46,14 @@
                   <textarea id="content" name="content" rows="9" class="form-control" placeholder="Content.."></textarea>
                 </div>
               </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="">Post Picture</label>
+                <div class="col-md-9">
+                  <image-component></image-component>  
+                </div>
+              </div>
+              
+
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="category_id">Post Category</label>
                 <div class="col-md-9">
@@ -91,8 +100,9 @@
 </div>
 @endsection
 @section('scripts')
-<script>
-        $('.select2-multi').select2({
+  <script src="{{ asset('js/select2.min.js') }}"></script>
+  <script>
+  $('.select2-multi').select2({
             placeholder: 'Choose A Tag',
             tags: true 
         });

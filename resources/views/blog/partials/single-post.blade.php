@@ -1,5 +1,5 @@
 <!-- Preview Image -->
-<img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+<img class="img-fluid rounded" src="/images/pictures/{{ $post->pictures[0]->file_name }}" alt="">
 
 <hr>
 

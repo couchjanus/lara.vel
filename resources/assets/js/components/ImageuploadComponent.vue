@@ -9,14 +9,10 @@
                     <img :src="image" class="img-responsive" height="70" width="90">
                 </div>
                 <div class="col-md-9">
-                    <input type="file" v-on:change="onImageChange" class="form-control">
+                    <input name = 'image' type="file" v-on:change="onImageChange" class="form-control">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-success" @click="uploadImage">Upload Image</button>
-                </div>
-            </div>
+           
         </div>
     </div>
   
@@ -46,7 +42,7 @@
             },
             uploadImage(){
                 axios.post('/image/store',{image: this.image}).then(response => { 
-                    // window.location.reload(); 
+                    
                     console.log(response.data.success);
                    }
                 );
